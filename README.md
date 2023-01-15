@@ -1,57 +1,79 @@
 # Find Your Hat 
-## Code Academy Challenege Project from Full Stack Engineering Course
-> Our solution has helped overcome all these problems with easy of access features, we have created a web-application 
- which gets the complete information of services from all the servers listed in a particular environment.
-
+### Codecademy Challenege Project from Full Stack Engineering Course
+> This project involves the use of Javascript to create a maze run with node.js.
 
 ## Table of Contents
-* [Problem Statement](#Problem-Statement)
-* [Limitations](#Limitations)
-* [Technologies Used](#Technologies-Used)
-* [Screenshots](#Screenshots)
-* [Idea/Solution](#Idea/Solution)
-* [Usage](#Usage)
-* [Business Values](#Business-Values)
-* [Future Scope](#Future-Scope)
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+<!-- * [Screenshots](#screenshots) -->
+* [Setup](#setup)
+* [Usage](#usage)
+* [Project Status](#project-status)
+<!-- * [Room for Improvement](#room-for-improvement) -->
+* [Acknowledgements](#acknowledgements)
+<!-- * [Contact](#contact) -->
+<!-- * [License](#license) -->
 
 
-
-## Problem Statement
-- Every Enterprise level product is distributed across many servers for better performance and convenience. Since it has many servers, 
- all should be maintained well and look after. But to do that it takes time as an engineer has to go to the remote servers and check them 
- manually which takes lots of time and then to look for a particular component at that server is a gruesome task.
-
-## Limitations
-- Inconvenient to check status of various components hosted on multiple servers in case of issues in system.
-- Inconvenient to check status of various components hosted on multiple servers in case of issues in system.
-- On production system, we have around 20 odd servers where the components are deployed, troubleshooting this setup 
-is pain at times.
+## General Information
+- an in-terminal maze game run with Node
+- to challenge my Javascript knowledge and use of Node
+- practice building Javascript classes and problem-solving
 
 ## Technologies Used
-- Angular
-- Ado.net
-- Entity framework
-- Web API
-
-## Idea/Solution
--To tackle this problem, we produced a solution in the form of a product which display the required services 
- along with their health status with the added benefit of auto refresh so that the latest status of the components is easily available. 
- Along with this we also shows the upwards as well as the downwards dependency of the component in a comprehensible, readable format.
+- Javascript
+- Node.js
 
 
-## Business Values	
--As our solution is dynamic, we can support multiple servers and various products. Its easily scalable and shippable to various environments and products.
--Our solution is a centralized system which provides complete information about all the servers and its services at one place ,so it 
- will give a good InSite of our project and will save time .
--With the help of our system we can easily trace the error and will figure out its root cause.
--Ultimately the application saves time and maintenance effort effectively.  
+## Features
+List the ready features here:
+- traverse a premade smaze to find your hat
+- create your own maze 
 
 
-## Future Scope
--It can be a centralized system which can provide detailed and précised information about servers and its services. 
--Manipulation of server components  can be achieved in further enhancement.
--We can show a UML diagram which will provide upward and downward dependency of each service.
+<!-- ## Screenshots
+![Example screenshot](./img/screenshot.png) -->
+
+
+## Setup
+What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
+
+Proceed to describe how to install / setup one's local environment / get started with the project.
+
+
+## Usage
+ Find Your Hat runs with Node. A 2d array is used to play the game.
+ You can use a the static method, generateField(width, height, percentHoles), to have a field generated. This creates a field with the desired width and height, as well as how many holes you cant the field to have. If you land on a hole, it's game over!
+ 
+Create a new instance of the static method generateField. Example: * const newGameBoard = Field.generateField(5, 5, 30); *
+Create a new instance of the class Field, passing in the variable storing the field you generated. Example: * const gameTime = new Field(newGameBoard); *
+Run the playGame method. Example: * * gameTime.playGame(); * *
+
+
+## Project Status
+Project is: _in progress_
+
+
+<!-- ## Room for Improvement
+Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+
+Room for improvement:
+- Improvement to be done 1
+- Improvement to be done 2
+
+To do:
+- Feature to be added 1
+- Feature to be added 2 -->
+
+
+## Acknowledgements
+- README inspired by [@flynerdpl](https://www.flynerd.pl/)
 
 
 
+<!-- ## Contact
+Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me! -->
 
+<!-- ## License -->
+<!-- This project is open source and available under the [... License](). -->
