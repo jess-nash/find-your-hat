@@ -5,6 +5,11 @@ const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
 
+let currentlyPlaying = true;
+
+let posX = 0;
+let posY = 0;
+
 class Field {
   constructor(field) {
     this.field = field
@@ -17,7 +22,7 @@ class Field {
   }
 
   updateFieldArray(row, col) {
-
+    this.field[col][row] = pathCharacter;
   }
 
   static generateField(height, width) {
@@ -28,59 +33,48 @@ class Field {
 }
 
 
-// Think about breaking down the necessary functionality into helper methods. In our solution, we approached this problem by creating:
 // --Methods to test whether the current location results in win (user is on the hat) or a loss (user is on a hole or out-of-bounds).
+function getStatus(location){
+  if (location === hat) {
+    console.log("Congrats! You found your hat. 🎩");
+    currentlyPlaying = false;
+  } else if (location === hole) {
+    console.log("Ooops! You fell in a hole! O_O'");
+    currentlyPlaying = false;
+  }
+}
+
 // --A method to handle asking and accepting user input, and updating the current location.
+function updateLocation() {
+  const userInput = prompt('Which way? ');
+
+  switch (userInput) {
+    case 'u': posY--;
+    case 'd': posY++;
+    case 'l': posX--;
+    case 'r': posX++;
+    break
+    default: console.log("Out of bounds instructions. Try again.");
+  }
+}
+
 // --A method to run the main game loop until the game is won or lost.
-  // --Wins by finding their hat.
-  // --Loses by landing on (and falling in) a hole.
-  // --Attempts to move “outside” the field.
-  // When any of the above occur, let the user know and end the game.
-
-
-
 function playGame(field) {
-  let gameOver = false
-  let status = '';
+  const instructions = "Find your hat by moving around! \n Left - l \n Right - r \n Up - u \n Down - d \n"
+  console.log(instructions)
 
-  let rowIndex = 0;
-  let columnIndex = 0;
-
-  while (!gameOver) {
+  while (currentlyPlaying) {
     field.print();
 
-    const userInput = prompt('Which way?');
+    updateLocation();
 
-    if (userInput === 'u') {
-      columnIndex--
-    } else if (userInput === 'd') {
-      columnIndex++
-    }
+    // if the new location is the same as the old location(current location), then it's out of bounds
 
-    if (userInput === 'l') {
-      rowIndex--
-    } else if (userInput === 'r') {
-      rowIndex++
-    }
+    let currentLocation = field.field[posY][posX];
+    getStatus(currentLocation);
 
     //update the field with the user's new move
-    // field.updateFieldArray(rowIndex, columnIndex);
-
-    console.log("Your new position: " + field.field[columnIndex][rowIndex]);
-
-
-    if (field.field[columnIndex][rowIndex] === '^') {
-      status = 'win';
-    } else if (field.field[columnIndex][rowIndex] === 'O') {
-      status = 'fall';
-    }
-  }
-
-  //thing to do once it's gameOver
-  switch (status) {
-    case 'win': console.log("Congrats! You found your hat. 🎩")
-    case 'fall': console.log("Ooops! You fell in a hole! O_O'")
-    case 'outbound': console.log("Out of bounds instructions. Try again.")
+    field.updateFieldArray(posX, posY);
   }
 }
 
