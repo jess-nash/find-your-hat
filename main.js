@@ -21,13 +21,17 @@ class Field {
     console.log(this.field.map(a=>a.join("")).join("\n"))
   }
 
-  updateFieldArray(row, col) {
-    this.field[col][row] = pathCharacter;
+  updateFieldArray(x, y) {
+    if (y >= this.height || y < 0) {
+      currentlyPlaying = false;
+    } else {
+      this.field[y][x] = pathCharacter;
+    }
   }
 
-  static generateField(height, width) {
-    // This method should at least take arguments for height and width of the field, and it should return a randomized two-dimensional array representing the field with a hat and one or more holes. In our solution, we added a third percentage argument used to determine what percent of the field should be covered in holes.
-
+  static generateField(height, width, percentageHoles) {
+    // This method should at least take arguments for height and width of the field, and it should return a randomized two-dimensional array representing the field with a hat and one or more holes.
+    return new Field([])
     // As you build .generateField(), think about edge cases to avoid. What if the hat is placed at the same point as the player should start (field[0][0])?
   }
 }
@@ -45,8 +49,14 @@ function getStatus(location){
 }
 
 // --A method to handle asking and accepting user input, and updating the current location.
-function updateLocation() {
+function updateLocation(field) {
   const userInput = prompt('Which way? ');
+  let currentLocation = field.field[posY][posX];
+
+  if (userInput === 'u' && currentLocation !== fieldCharacter || userInput === 'l' && currentLocation !== fieldCharacter) {
+    console.log("Out of bounds instructions. Try again.");
+    currentlyPlaying = false;
+  }
 
   switch (userInput) {
     case 'u': posY--;
@@ -66,12 +76,15 @@ function playGame(field) {
   while (currentlyPlaying) {
     field.print();
 
-    updateLocation();
+    updateLocation(field);
 
-    // if the new location is the same as the old location(current location), then it's out of bounds
-
-    let currentLocation = field.field[posY][posX];
-    getStatus(currentLocation);
+    if (posY >= field.height || posX >= field.width) {
+      console.log("Out of bounds instructions. Try again.")
+      currentlyPlaying = false;
+    } else {
+      let newLocation = field.field[posY][posX];
+      getStatus(newLocation);
+    }
 
     //update the field with the user's new move
     field.updateFieldArray(posX, posY);
@@ -79,7 +92,7 @@ function playGame(field) {
 }
 
 const myField = new Field([
-  ['*', '░', 'O'],
+  ['*', '░', '░'],
   ['░', 'O', '░'],
   ['░', '^', '░'],
 ]);
