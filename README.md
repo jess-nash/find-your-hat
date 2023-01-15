@@ -35,10 +35,10 @@ to start the game.
  - This creates a field with the desired width and height, as well as how many holes you cant the field to have. 
  - If you land on a hole, it's game over!
  
-Create a new instance of the static method generateField. Example: * const newGameBoard = Field.generateField(5, 5, 30); *
+<!-- Create a new instance of the static method generateField. Example: * const newGameBoard = Field.generateField(5, 5, 30); *
 Create a new instance of the class Field, passing in the variable storing the field you generated. Example: * const gameTime = new Field(newGameBoard); *
 Run the playGame method. Example: * * gameTime.playGame(); * *
-
+ -->
 
 ## Project Status
 Project is: in progress
